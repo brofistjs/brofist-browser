@@ -1,0 +1,32 @@
+{
+  "name": "buddy-browser",
+  "version": "0.1.0",
+  "description": "Browser reporter for buddy tests.",
+  "main": "./lib/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "dominatrix": "~0.2.1",
+    "doom": "~0.4.5",
+    "moment": "~2.0.0",
+    "pinky": "~0.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/buddyjs/buddy-browser.git"
+  },
+  "keywords": [
+    "buddy",
+    "testing",
+    "reporter",
+    "buddy-reporter"
+  ],
+  "author": "Quildreen \"Sorella\" Motta <quildreen@gmail.com>",
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}
