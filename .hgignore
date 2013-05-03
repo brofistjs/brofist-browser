@@ -1,2 +1,4 @@
 syntax: glob
 node_modules
+www/screen.css
+www/spec.js
