@@ -12,9 +12,16 @@
     "moment": "~2.0.0",
     "pinky": "~0.1.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jumper-skirt": "~0.1.0",
+    "nib": "~0.9.1",
+    "stylus": "~0.32.1",
+    "browserify": "~2.13.2",
+    "entypo-stylus": "~0.1.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "make-css": "$(npm bin)/stylus -I node_modules/jumper-skirt/src/ -I node_modules/nib/lib/ -I node_modules/entypo-stylus/ -o www stylus/"
   },
   "repository": {
     "type": "git",
