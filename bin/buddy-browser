@@ -96,7 +96,7 @@ function renderStylus(pathname) {
 function renderBrowserify(pathname) {
   var promise = pinky()
 
-  var b = browserify().add(pathname)
+  var b = browserify().add(path.resolve(pathname))
                       .bundle({ debug: true }, nodeResolver(promise))
 
   return promise
