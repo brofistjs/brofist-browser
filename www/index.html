@@ -7,26 +7,30 @@
   </head>
   <body>
     <div id="wrapper">
-      <div id="header">
-        <h1 id="logo">{:title}</h1>
-        <div id="status">
-          <div class="status-item passed">
-            <h2 class="test-count"></h2>
-            <small class="label">passed</small>
+      <div class="row">
+        <div id="header">
+          <div id="logo"><h1 class="title">{:title}</h1></div>
+          <div id="status">
+            <div class="row">
+              <div class="status-item passed">
+                <h2 class="test-count">21</h2>
+                <small class="label">passed</small>
+              </div>
+              <div class="status-item failed">
+                <h2 class="test-count">12</h2>
+                <small class="label">failed</small>
+              </div>
+              <div class="status-item ignored">
+                <h2 class="test-count">2</h2>
+                <small class="label">ignored</small>
+              </div>
+            </div>
           </div>
-          <div class="status-item failed">
-            <h2 class="test-count"></h2>
-            <small class="label">failed</small>
+          <div id="search-button">🔍</div>
+          <div id="search-panel">
+            <label for="q">Show only tests matching the regexp</label>
+            <input type="text" name="q" id="q">
           </div>
-          <div class="status-item ignored">
-            <h2 class="test-count"></h2>
-            <small class="label">ignored</small>
-          </div>
-        </div>
-        <div id="search-button"></div>
-        <div id="search-panel">
-          <label for="q">Show only tests matching the regexp</label>
-          <input type="text" name="q" id="q">
         </div>
       </div>
 
