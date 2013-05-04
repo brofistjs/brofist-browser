@@ -1,0 +1,170 @@
+#!/usr/bin/env node
+/// Module buddy-browser
+//
+// Server and generator for browser tests.
+//
+//
+// Copyright (c) 2013 Quildreen Motta
+//
+// Permission is hereby granted, free of charge, to any person
+// obtaining a copy of this software and associated documentation files
+// (the "Software"), to deal in the Software without restriction,
+// including without limitation the rights to use, copy, modify, merge,
+// publish, distribute, sublicense, and/or sell copies of the Software,
+// and to permit persons to whom the Software is furnished to do so,
+// subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+var doc = "buddy-browser — Server and generator for browser tests.\n"
+        + "\n"
+        + "Usage:\n"
+        + "  buddy-browser serve [options] <spec-file>\n"
+        + "  buddy-browser -h, --help\n"
+        + "  buddy-browser --version\n"
+        + "\n"
+        + "Options:\n"
+        + "  -t, --title        Specify the application's title.\n"
+        + "  -p, --port         Specify the port to listen on.\n"
+        + "  -h, --help         Displays usage help and exits.\n"
+        + "  --version          Displays version info and exits.\n"
+
+//// -- Dependencies ---------------------------------------------------
+var ffs        = require('ffs')
+var path       = require('path')
+var stylus     = require('stylus')
+var browserify = require('browserify')
+var express    = require('express')
+var spice      = require('spice')
+var lift       = require('pinky-for-fun').lift
+var pinky      = require('pinky')
+var optimist   = require('optimist')
+var meta       = require('../package.json')
+
+
+//// -- Helpers --------------------------------------------------------
+function raise(err) {
+  process.nextTick(function(){ throw err })
+}
+
+var interpolate = lift(spice)
+
+function read(pathname) {
+  return ffs.read({ encoding: 'utf-8' }, pathname)
+}
+
+function send(res, mime) { return function(data) {
+  mime = mime || 'text/html'
+  return data.then( function(text) {
+                      res.set('Content-Type', mime + '; charset=utf-8')
+                      res.send(text) }
+                  , raise)
+}}
+
+function nodeResolver(promise) { return function(err, data) {
+  return err?              promise.reject(err)
+  :      /* otherwise */   promise.fulfill(data)
+}}
+
+
+function renderStylus(pathname) {
+  var modules = path.resolve(__dirname, '..', 'node_modules')
+  var pathTo  = path.resolve.bind(null, modules)
+
+  return read(pathname).then(function(data) {
+           var promise = pinky()
+
+           stylus(data).set('filename', pathname)
+                       .include(pathTo('jumper-skirt', 'src'))
+                       .include(pathTo('nib', 'lib'))
+                       .include(pathTo('entypo-stylus'))
+                       .render(nodeResolver(promise))
+
+           return promise
+  })
+}
+
+function renderBrowserify(pathname) {
+  var promise = pinky()
+
+  var b = browserify().add(pathname)
+                      .bundle({ debug: true }, nodeResolver(promise))
+
+  return promise
+}
+
+
+//// -- Server ---------------------------------------------------------
+function serve(port, title, file) {
+  var app = express()
+
+  var root  = path.resolve(__dirname, '..')
+  var index = path.resolve(root, 'www', 'index.html')
+  var css   = path.resolve(root, 'stylus', 'screen.styl')
+
+  app.use('/fonts', express.static(path.resolve(root, 'fonts')))
+
+  app.get('/', function(req, res) {
+    send(res)(interpolate(read(index), { title: title }))
+  })
+
+  app.get('/screen.css', function(req, res) {
+    send(res, 'text/css')(renderStylus(css))
+  })
+
+  app.get('/spec.js', function(req, res) {
+    send(res, 'text/javascript')(renderBrowserify(file))
+  })
+
+
+  app.listen(port, function(err) {
+                     if (err) throw err
+
+                     var realPort = this.address().port
+                     console.log('Serving tests at'
+                               + ' http://localhost:' + realPort)
+  })
+}
+
+
+//// -- Main -----------------------------------------------------------
+void function() {
+       var argv = optimist.alias('t', 'title').default('t', 'Test buddy')
+                          .alias('p', 'port') .default('p', 0)
+                          .alias('h', 'help') .boolean('h')
+                          .boolean('version')
+                          .argv
+
+       var cmd      = argv._.shift()
+       var port     = argv.port
+       var title    = argv.title
+       var help     = argv.help
+       var version  = argv.version
+       var files    = argv._
+
+
+       function shouldServe() {
+         return cmd == 'serve'
+         &&     files.length
+       }
+
+       function shouldGenerate() {
+         return cmd == 'generate'
+         &&     files.length
+       }
+
+
+       return version?           console.log(meta.version)
+       :      help?              console.log(doc)
+       :      shouldServe()?     serve(port, title, files[0])
+       :      /* otherwise */    console.log(doc)
+}()
