@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "dominatrix": "~0.2.1",
-    "doom": "~0.4.5",
+    "doom": "~0.4.6",
     "moment": "~2.0.0",
     "pinky": "~0.1.2"
   },

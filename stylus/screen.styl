@@ -113,31 +113,36 @@ entypo-define('Entypo', '../fonts/entypo/entypo', 'entypo')
   position: relative
   transition: all 0.2s ease-out
   cursor: pointer
+  &::after
+    content: ""
+    display: block
+    border: 15px solid #ccc
+    border-color: transparent transparent transparent transparent
+    position: absolute
+    top: 85px
+    left: 50%
+    margin-left: -7px
+    z-index: 2
   &:hover
     background-color: #cfcfcf
   &.active
     background-color: #ccc
     &::after
-      content: ""
-      display: block
-      border: 15px solid #ccc
-      border-color: #ccc transparent transparent transparent
-      position: absolute
-      top: 100%
-      left: 50%
-      margin-left: -7px
+      top: 100px
+      border-top-color: #ccc
+
 
 #search-panel
   jsk-grid-make-column: 12
   background-color: #eee
-  line-height: 60px
+  line-height: 50px
   font-family: jsk-body-font
   font-weight: 300
   height: 0
   opacity: 0
   transition: all 0.2s ease-out
   &.active
-    height: 50px
+    height: 60px
     opacity: 1
   label
     font-size: 2em
@@ -145,7 +150,7 @@ entypo-define('Entypo', '../fonts/entypo/entypo', 'entypo')
     margin-left: 25px    
   #q
     font-size: 2em
-    height: 50px
+    height: 60px
     line-height: 50px
     border: none
     background: none
@@ -186,7 +191,14 @@ entypo-define('Entypo', '../fonts/entypo/entypo', 'entypo')
     color: slow-colour
 
   .details
-    display: none
+    height: 0
+    opacity: 0
+    overflow: hidden
+    transition: all 0.2s ease-out
+  &.active .details
+    height: auto
+    opacity: 1
+  
 
 #footer
   background-color: #ddd
