@@ -10,7 +10,8 @@
     "dominatrix": "~0.2.1",
     "doom": "~0.4.6",
     "moment": "~2.0.0",
-    "pinky": "~0.1.2"
+    "pinky": "~0.1.2",
+    "boo": "~1.2.4"
   },
   "devDependencies": {
     "jumper-skirt": "~0.1.0",

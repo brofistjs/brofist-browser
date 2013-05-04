@@ -181,6 +181,7 @@ entypo-define('Entypo', '../fonts/entypo/entypo', 'entypo')
       color: #ccc
       font-size: 0.6em
       display: inline
+      margin-left: 0.5em
   &.success > .title
     border-color: success-colour
   &.failure > .title
@@ -198,6 +199,26 @@ entypo-define('Entypo', '../fonts/entypo/entypo', 'entypo')
   &.active .details
     height: auto
     opacity: 1
+
+.exception
+  .title
+    line-height: 1.5em
+    color: #D83500
+    font-weight: 300
+    font-family: jsk-body-font
+    font-size: 1.5em
+    border-bottom: 1px solid #eee
+    margin-bottom: 20px
+    display: block
+    .message
+      font-weight: 400
+    .type, .message
+      display: inline
+    .type::after
+      content: ": "
+  .stack
+    color: #aaa
+    whitespace: pre
   
 
 #footer
