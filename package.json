@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Browser reporter for buddy tests.",
   "main": "./lib/index.js",
+  "bin": "./bin/buddy-browser",
   "directories": {
     "test": "test"
   },
