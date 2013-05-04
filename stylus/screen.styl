@@ -176,7 +176,6 @@ entypo-define('Entypo', '../fonts/entypo/entypo', 'entypo')
     margin-left: -26px
     margin-bottom: 10px
     padding-left: 25px
-    cursor: pointer
     .running-time
       color: #ccc
       font-size: 0.6em
@@ -188,7 +187,7 @@ entypo-define('Entypo', '../fonts/entypo/entypo', 'entypo')
     border-color: failure-colour
   &.ignored > .title
     border-color: #999
-  &.slow .running-time
+  &.slow > .title .running-time
     color: slow-colour
 
   .details
@@ -196,9 +195,28 @@ entypo-define('Entypo', '../fonts/entypo/entypo', 'entypo')
     opacity: 0
     overflow: hidden
     transition: all 0.2s ease-out
-  &.active .details
+  .details.active
     height: auto
     opacity: 1
+
+.suite > .title, .failure > .title
+  cursor: pointer
+    
+.suite
+  & > .details
+    border-top: 1px solid #eee
+    margin: 0 0 0 10px
+    padding-top: 20px
+
+.report .report
+  & > .title
+    font-size: 2.5em
+  .report > .title
+    font-size: 2.0em
+  .report .report > .title
+    font-size: 1.8em
+  .report .report .report > .title
+    font-size: 1.6em
 
 .exception
   .title
