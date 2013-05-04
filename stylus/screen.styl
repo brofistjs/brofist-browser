@@ -35,6 +35,7 @@ jsk-base-colour = #424242
 
 success-colour = #008C46
 failure-colour = #D83500
+slow-colour = #FF8000
 
 /// -- Dependencies ----------------------------------------------------
 @import "nib"
@@ -56,10 +57,16 @@ entypo-define('Entypo', '../fonts/entypo/entypo', 'entypo')
 .row
   jsk-grid-make-row: 12
 
+#wrapper
+  overflow: hidden
+
 #header
   clearfix: yes
   background: #ddd
-  height: 100px
+  min-height: 100px
+
+  #logo, #status, #search-button
+    height: 100px
   
   #logo
     jsk-grid-make-column: 8
@@ -123,7 +130,7 @@ entypo-define('Entypo', '../fonts/entypo/entypo', 'entypo')
 #search-panel
   jsk-grid-make-column: 12
   background-color: #eee
-  line-height: 50px
+  line-height: 60px
   font-family: jsk-body-font
   font-weight: 300
   height: 0
@@ -146,3 +153,53 @@ entypo-define('Entypo', '../fonts/entypo/entypo', 'entypo')
     font-weight: 300
     color: jsk-base-colour
 
+#test-results
+  margin: 50px 25px
+  list-style: none
+
+.report
+  border-left: 1px solid #ccc
+  margin-bottom: 20px
+  padding-left: 25px
+
+  & > .title
+    font-family: jsk-body-font
+    font-weight: 300
+    colour: #777
+    border-left: 6px solid #ccc
+    line-height: 100%
+    margin-left: -26px
+    margin-bottom: 10px
+    padding-left: 25px
+    cursor: pointer
+    .running-time
+      color: #ccc
+      font-size: 0.6em
+      display: inline
+  &.success > .title
+    border-color: success-colour
+  &.failure > .title
+    border-color: failure-colour
+  &.ignored > .title
+    border-color: #999
+  &.slow .running-time
+    color: slow-colour
+
+  .details
+    display: none
+
+#footer
+  background-color: #ddd
+  height: 50px
+  line-height: 50px
+  font-family: jsk-body-font
+  font-weight: 300
+  font-size: 1.5em
+  color: #999
+  text-align: right
+
+  .copyright-info
+    margin-right: 50px
+    font-size: 0.8em
+    color: #aaa
+  
