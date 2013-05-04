@@ -1,0 +1,148 @@
+/// screen.styl --- entry point for Papyr styles
+//
+// Copyright (c) 2013 Quildreen "Sorella" Motta <quildreen@gmail.com>
+//
+// Permission is hereby granted, free of charge, to any person
+// obtaining a copy of this software and associated documentation files
+// (the "Software"), to deal in the Software without restriction,
+// including without limitation the rights to use, copy, modify, merge,
+// publish, distribute, sublicense, and/or sell copies of the Software,
+// and to permit persons to whom the Software is furnished to do so,
+// subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+/// -- Font definitions ------------------------------------------------
+@css {
+  @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+}
+
+/// -- Configuration ---------------------------------------------------
+jsk-body-font = 'Open Sans', sans
+jsk-heading-font = 'Open Sans', sans
+jsk-base-line-height = 1.2em
+jsk-base-font-size = 16px
+jsk-base-colour = #424242
+
+success-colour = #008C46
+failure-colour = #D83500
+
+/// -- Dependencies ----------------------------------------------------
+@import "nib"
+global-reset() // So we dont affect JSK defs
+
+
+@import "entypo-stylus"
+@import "jumper-skirt/layout/grid"
+@import "jumper-skirt/layout/typography"
+@import "jumper-skirt/forms/core"
+
+
+/// -- Re-configuration ------------------------------------------------
+jsk-grid-width = 100%
+entypo-define('Entypo', '../fonts/entypo/entypo', 'entypo')
+
+
+/// -- Actual buddy reporter stuff -------------------------------------
+.row
+  jsk-grid-make-row: 12
+
+#header
+  clearfix: yes
+  background: #ddd
+  height: 100px
+  
+  #logo
+    jsk-grid-make-column: 8
+    .title
+      margin: 0 0 0 25px
+      line-height: 90px
+      color: #999
+  #status
+    jsk-grid-make-column: 3
+  #search-button
+    jsk-grid-make-column: 1
+  #search-panel
+    jsk-grid-make-column: 12
+
+.status-item
+  jsk-grid-make-column: 4
+  color: #777
+  text-align: center
+
+  .test-count
+    font-size: 3em
+    font-weight: 300
+    color: #999
+    margin: 0
+    line-height: 80px
+    
+  .label
+    text-transform: uppercase
+    position: relative
+    top: -20px
+
+  &.passed .test-count
+    color: success-colour
+  &.failed .test-count
+    color: failure-colour
+
+#search-button
+  font-size: 96px
+  text-align: center
+  font-family: entypo
+  line-height: 90px
+  height: 100%
+  color: #999
+  position: relative
+  transition: all 0.2s ease-out
+  cursor: pointer
+  &:hover
+    background-color: #cfcfcf
+  &.active
+    background-color: #ccc
+    &::after
+      content: ""
+      display: block
+      border: 15px solid #ccc
+      border-color: #ccc transparent transparent transparent
+      position: absolute
+      top: 100%
+      left: 50%
+      margin-left: -7px
+
+#search-panel
+  jsk-grid-make-column: 12
+  background-color: #eee
+  line-height: 50px
+  font-family: jsk-body-font
+  font-weight: 300
+  height: 0
+  opacity: 0
+  transition: all 0.2s ease-out
+  &.active
+    height: 50px
+    opacity: 1
+  label
+    font-size: 2em
+    color: #999
+    margin-left: 25px    
+  #q
+    font-size: 2em
+    height: 50px
+    line-height: 50px
+    border: none
+    background: none
+    font-family: jsk-body-font
+    font-weight: 300
+    color: jsk-base-colour
+
