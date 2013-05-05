@@ -1,6 +1,6 @@
 {
   "name": "buddy-browser",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Browser reporter for buddy tests.",
   "main": "./lib/index.js",
   "bin": "./bin/buddy-browser",
@@ -22,11 +22,11 @@
     "browserify": "~2.13.2",
     "spice": "~0.1.1",
     "pinky-for-fun": "~0.2.1",
-    "optimist": "~0.4.0"
+    "optimist": "~0.4.0",
+    "test-buddy": "~0.1.4"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "make-css": "$(npm bin)/stylus -I node_modules/jumper-skirt/src/ -I node_modules/nib/lib/ -I node_modules/entypo-stylus/ -o www stylus/"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
