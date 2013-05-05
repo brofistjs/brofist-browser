@@ -22,8 +22,7 @@
     "browserify": "~2.13.2",
     "spice": "~0.1.1",
     "pinky-for-fun": "~0.2.1",
-    "optimist": "~0.4.0",
-    "test-buddy": "~0.1.4"
+    "optimist": "~0.4.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -40,5 +39,8 @@
   ],
   "author": "Quildreen \"Sorella\" Motta <quildreen@gmail.com>",
   "license": "MIT",
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "test-buddy": "~0.1.4"
+  }
 }
