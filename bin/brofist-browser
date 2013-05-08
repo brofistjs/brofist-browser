@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/// Module buddy-browser
+/// Module brofist-browser
 //
 // Server and generator for browser tests.
 //
@@ -25,12 +25,12 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-var doc = "buddy-browser — Server and generator for browser tests.\n"
+var doc = "brofist-browser — Server and generator for browser tests.\n"
         + "\n"
         + "Usage:\n"
-        + "  buddy-browser serve [options] <spec-file>\n"
-        + "  buddy-browser -h, --help\n"
-        + "  buddy-browser --version\n"
+        + "  brofist-browser serve [options] <spec-file>\n"
+        + "  brofist-browser -h, --help\n"
+        + "  brofist-browser --version\n"
         + "\n"
         + "Options:\n"
         + "  -t, --title        Specify the application's title.\n"
@@ -138,7 +138,7 @@ function serve(port, title, file) {
 
 //// -- Main -----------------------------------------------------------
 void function() {
-       var argv = optimist.alias('t', 'title').default('t', 'Test buddy')
+       var argv = optimist.alias('t', 'title').default('t', 'Tests')
                           .alias('p', 'port') .default('p', 0)
                           .alias('h', 'help') .boolean('h')
                           .boolean('version')
