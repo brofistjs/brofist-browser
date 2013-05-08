@@ -1,6 +1,6 @@
 {
   "name": "brofist-browser",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Browser reporter for brofist tests.",
   "main": "./lib/index.js",
   "bin": "./bin/brofist-browser",
