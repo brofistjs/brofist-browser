@@ -1,13 +1,13 @@
-# buddy-browser
+# brofist-browser
 
-Browser reporter for Buddy.
+Browser reporter for [Brofist](https://github.com/brofistjs/brofist).
 
 ## Example
 
-You pass the `buddy-browser` library as your reporter:
+You pass the `brofist-browser` library as your reporter:
 
 ```js
-var spec   = require('test-buddy')()
+var spec   = require('brofist')()
 
 spec('Your thing', function(it) {
   it('Should pass', function() {
@@ -19,25 +19,26 @@ spec('Your thing', function(it) {
   })
 })
 
-spec.run(require('buddy-browser')())
+spec.run(require('brofist-browser')())
 ```
 
 Then point the server to your file:
 
 ```bash
-$ buddy-browser serve your-file.js
+$ brofist-browser serve your-file.js
 ```
 
 And get back this deliciously rich output!
 
-![The output of Buddy-browser](example.png)
+![The output of Brofist-browser](example.png)
 
 
 ## Installing
 
 Just grab it from NPM:
 
-    $ npm install -g buddy-browser
+    $ npm install brofist-browser
+    $ npm install -g brofist-browser # To get the command line thingie
     
 ## Licence
 

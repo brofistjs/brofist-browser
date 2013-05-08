@@ -1,9 +1,9 @@
 {
-  "name": "buddy-browser",
+  "name": "brofist-browser",
   "version": "0.1.1",
-  "description": "Browser reporter for buddy tests.",
+  "description": "Browser reporter for brofist tests.",
   "main": "./lib/index.js",
-  "bin": "./bin/buddy-browser",
+  "bin": "./bin/brofist-browser",
   "directories": {
     "test": "test"
   },
@@ -23,20 +23,20 @@
     "spice": "~0.1.1",
     "pinky-for-fun": "~0.2.1",
     "optimist": "~0.4.0",
-    "test-buddy": "~0.1.4"
+    "brofist": "~0.2.x"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/buddyjs/buddy-browser.git"
+    "url": "git://github.com/brofistjs/brofist-browser.git"
   },
   "keywords": [
-    "buddy",
+    "brofist",
     "testing",
     "reporter",
-    "buddy-reporter"
+    "brofist-reporter"
   ],
   "author": "Quildreen \"Sorella\" Motta <quildreen@gmail.com>",
   "license": "MIT",

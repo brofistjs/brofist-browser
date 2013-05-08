@@ -1,4 +1,4 @@
-var spec   = require('test-buddy')()
+var spec   = require('brofist')()
 
 spec('Your thing', function(it) {
   it('Should pass', function() {
