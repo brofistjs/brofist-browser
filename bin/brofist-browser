@@ -96,7 +96,9 @@ function renderStylus(pathname) {
 function renderBrowserify(pathname) {
   var promise = pinky()
 
-  var b = browserify().add(path.resolve(pathname))
+
+  var b = browserify().require(path.resolve(pathname), { expose: '::specs' })
+                      .add(path.resolve(__dirname, '../lib/entry'))
                       .bundle({ debug: true }, nodeResolver(promise))
 
   return promise
