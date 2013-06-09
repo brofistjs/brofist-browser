@@ -4,12 +4,12 @@ Browser reporter for [Brofist](https://github.com/brofistjs/brofist).
 
 ## Example
 
-You pass the `brofist-browser` library as your reporter:
+You write your tests [Brofist style](https://github.com/brofistjs/brofist/wiki/Writing-tests)
 
 ```js
-var spec   = require('brofist')()
+var spec = require('brofist')()
 
-spec('Your thing', function(it) {
+module.exports = spec('Your thing', function(it) {
   it('Should pass', function() {
 
   })
@@ -18,8 +18,6 @@ spec('Your thing', function(it) {
     throw new Error('boo')
   })
 })
-
-spec.run(require('brofist-browser')())
 ```
 
 Then point the server to your file:
@@ -37,8 +35,7 @@ And get back this deliciously rich output!
 
 Just grab it from NPM:
 
-    $ npm install brofist-browser
-    $ npm install -g brofist-browser # To get the command line thingie
+    $ npm install -g brofist-browser
     
 ## Licence
 
