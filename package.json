@@ -1,6 +1,6 @@
 {
   "name": "brofist-browser",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Browser reporter for brofist tests.",
   "main": "./lib/index.js",
   "bin": "./bin/brofist-browser",
@@ -23,7 +23,7 @@
     "spice": "~1.0.2",
     "pinky-for-fun": "~0.2.1",
     "optimist": "~0.5.2",
-    "brofist": "~0.2.4",
+    "brofist": "~0.3.0",
     "doom-nwmatcher": "~0.1.0",
     "doom-bean": "~0.1.0"
   },
